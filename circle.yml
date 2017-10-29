@@ -1,4 +1,6 @@
 machine:
+  environment:
+    PYTHONPATH: projects
   python:
     version: 3.5.0
   node:
@@ -6,9 +8,10 @@ machine:
 
 dependencies:
   pre:
-    - pip3 install pep8
+    - pip3 install -r projects/requirements.txt
 
 test:
   override:
     - pep8 projects/semantic_selector/*.py
+    - python ./projects/tests/test_*.py
     - npm run danger
